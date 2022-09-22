@@ -1,2 +1,2 @@
 # CMPG323Project3-29318920
-Standards and Patterns
+This project will focus on the standards and patterns
