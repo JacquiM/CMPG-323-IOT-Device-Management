@@ -7,12 +7,6 @@ namespace DeviceManagement_WebApp.RepoClasses
 {
     public class ZoneClass
     {
-        private readonly ConnectedOfficeContext contex_ = new ConnectedOfficeContext();
-
-        public List<Zone> Getall()
-        {
-            return contex_.Zone.ToList();
-        }
-
+        
     }
 }
