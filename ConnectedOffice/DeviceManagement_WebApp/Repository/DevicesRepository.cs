@@ -1,25 +1,36 @@
 ﻿using DeviceManagement_WebApp.Data;
+using DeviceManagement_WebApp.Interfaces;
 using DeviceManagement_WebApp.Models;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Repository
 {
-    public class DevicesRepository
+    public class DevicesRepository : GenericRepository<Device>, IDevicesRepository
     {
-        protected readonly ConnectedOfficeContext _context = new ConnectedOfficeContext();
-
-        // GET ALL: Products
-        public IEnumerable<Device> GetAll()
+        public DevicesRepository(ConnectedOfficeContext context) : base(context)
         {
-            return _context.Device.ToList();
         }
-
-        // TO DO: Add ‘Get By Id’
-        // TO DO: Add ‘Create’
-        // TO DO: Add ‘Edit’
-        // TO DO: Add ‘Delete’
-        // TO DO: Add ‘Exists’
-
+        public bool Exists(Guid id)
+        {
+            return _context.Device.Any(e => e.DeviceId == id);
+        }
+        new public async Task<Device> FindAsync(Guid? id)
+        {
+            return await _context.Device
+                .Include(d => d.Category)
+                .Include(d => d.Zone)
+                .FirstOrDefaultAsync(m => m.DeviceId == id);
+        }
+        public IEnumerable getCategories()
+        {
+            return _context.Category;
+        }
+        public IEnumerable getZones()
+        {
+            return _context.Zone;
+        }
     }
-}

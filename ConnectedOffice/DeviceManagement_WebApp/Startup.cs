@@ -12,6 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DeviceManagement_WebApp.Interfaces;
+using DeviceManagement_WebApp.Models;
+using DeviceManagement_WebApp.Repositories;
+using DeviceManagement_WebApp.Repository;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+
 
 namespace DeviceManagement_WebApp
 {
@@ -35,6 +41,9 @@ namespace DeviceManagement_WebApp
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<IZonesRepository, ZonesRepository>();
+            services.AddScoped<IDevicesRepository, DevicesRepository>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

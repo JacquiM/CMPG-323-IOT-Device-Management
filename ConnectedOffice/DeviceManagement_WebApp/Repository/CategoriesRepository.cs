@@ -1,25 +1,23 @@
 ﻿using DeviceManagement_WebApp.Data;
+using DeviceManagement_WebApp.Interfaces;
 using DeviceManagement_WebApp.Models;
-using System.Collections.Generic;
+using DeviceManagement_WebApp.Repository;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Repository
 {
-    public class CategoriesRepository
+    public class CategoriesRepository : GenericRepository<Category>, ICategoriesRepository
     {
-        protected readonly ConnectedOfficeContext _context = new ConnectedOfficeContext();
-
-        // GET ALL: Products
-        public IEnumerable<Category> GetAll()
+        public CategoriesRepository(ConnectedOfficeContext context) : base(context)
         {
-            return _context.Category.ToList();
         }
-
-        // TO DO: Add ‘Get By Id’
-        // TO DO: Add ‘Create’
-        // TO DO: Add ‘Edit’
-        // TO DO: Add ‘Delete’
-        // TO DO: Add ‘Exists’
-
+        public bool Exists(Guid? id)
+        {
+            return _context.Category.Any(e => e.CategoryId == id);
+        }
     }
 }
