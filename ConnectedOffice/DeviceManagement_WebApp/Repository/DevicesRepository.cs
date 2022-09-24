@@ -34,3 +34,4 @@ namespace DeviceManagement_WebApp.Repository
             return _context.Zone;
         }
     }
+}
