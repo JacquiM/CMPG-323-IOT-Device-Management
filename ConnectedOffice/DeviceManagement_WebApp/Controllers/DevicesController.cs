@@ -123,7 +123,7 @@ namespace DeviceManagement_WebApp.Controllers
                 return NotFound();
             }
 
-            var device = _devicesRepository.FindAsync(id);
+            var device = await _devicesRepository.FindAsync(id);
             if (device == null)
             {
                 return NotFound();
