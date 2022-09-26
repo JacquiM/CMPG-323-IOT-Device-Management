@@ -7,7 +7,12 @@ namespace DeviceManagement_WebApp.RepoClasses
 {
     public class DeviceClass
     {
-       
+        private readonly ConnectedOfficeContext _context = new ConnectedOfficeContext();
+
+        public List<Device> Getall()
+        {
+            return _context.Device.ToList();
+        }
     }
 
 }
