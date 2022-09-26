@@ -21,7 +21,7 @@ namespace DeviceManagement_WebApp.Models
         [DisplayName("Status")]
         public string Status { get; set; }
         [DisplayName("Is Active")]
-        public bool IsActive { get; set; }
+        public bool IsActvie { get; set; }
         [DisplayName("Date Created")]
         public DateTime DateCreated { get; set; }
 
