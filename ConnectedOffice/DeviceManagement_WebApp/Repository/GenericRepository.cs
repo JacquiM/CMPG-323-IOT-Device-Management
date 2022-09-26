@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Repository
 {
-    public class GenericRepo<T> : IGenericRepo<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly ConnectedOfficeContext _context;
-        public GenericRepo(ConnectedOfficeContext context)
+        public GenericRepository(ConnectedOfficeContext context)
         {
             _context = context;
         }

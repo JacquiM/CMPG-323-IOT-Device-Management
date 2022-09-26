@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
+using System;
 
 namespace DeviceManagement_WebApp.Repository
 {
-    public interface IGenericRepo<T> where T : class
+    public interface IGenericRepository<T> where T : class
     {
         T GetById(int id);
         IEnumerable<T> GetAll();
