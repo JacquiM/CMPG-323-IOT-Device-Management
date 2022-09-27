@@ -13,16 +13,18 @@ namespace DeviceManagement_WebApp.Controllers
     public class ZonesController : Controller
     {
         private readonly ConnectedOfficeContext _context;
+        private readonly IZoneRepository _zoneRepository;
 
-        public ZonesController(ConnectedOfficeContext context)
+        public ZonesController(ConnectedOfficeContext context, IZoneRepository zoneRepository)
         {
             _context = context;
+            _zoneRepository = zoneRepository;
         }
 
         // GET: Zones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Zone.ToListAsync());
+            return View(_zoneRepository.GetAll());
         }
 
         // GET: Zones/Details/5

@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace DeviceManagement_WebApp.Repository
 {
+    //Create and implement CategoryRepository
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
         

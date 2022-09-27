@@ -16,7 +16,7 @@ namespace DeviceManagement_WebApp.Controllers
         private readonly ConnectedOfficeContext _context;
         private readonly ICategoryRepository _categoryRepository;
 
-        // Get ConnectedOfficeContext and store it to the CategoryRepository
+        
         public CategoriesController(ConnectedOfficeContext context, ICategoryRepository categoryRepository)
         {
             _context = context;
