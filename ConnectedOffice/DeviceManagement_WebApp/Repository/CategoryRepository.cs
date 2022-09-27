@@ -11,7 +11,7 @@ namespace DeviceManagement_WebApp.Repository
         {
         }
 
-        //Get most recent Category taht was created and update it
+        //Get most recent Category that was created and update it
         public Category GetMostRecentCategory()
         {
             return _context.Category.OrderByDescending(Category => Category.DateCreated).FirstOrDefault();
