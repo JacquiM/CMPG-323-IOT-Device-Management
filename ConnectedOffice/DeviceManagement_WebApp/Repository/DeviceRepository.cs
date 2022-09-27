@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DeviceManagement_WebApp.Repository
 {
-    //Create and implement DeviceRepository
+    //Create and implement the DeviceRepository
     public class DeviceRepository : GenericRepository<Device>, IDeviceRepository
     {
         public DeviceRepository(ConnectedOfficeContext context) : base(context)
