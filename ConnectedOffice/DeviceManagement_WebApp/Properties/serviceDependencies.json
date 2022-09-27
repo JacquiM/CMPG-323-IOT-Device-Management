@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:29903599.database.windows.net",
+      "dynamicId": null
+    }
+  }
+}
