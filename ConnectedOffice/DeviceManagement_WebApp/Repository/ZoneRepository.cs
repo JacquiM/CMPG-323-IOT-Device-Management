@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DeviceManagement_WebApp.Repository
 {
-    //Create and implement ZoneRepository
+    //Create and implement the ZoneRepository
     public class ZoneRepository : GenericRepository<Zone>, IZoneRepository
     {
         public ZoneRepository(ConnectedOfficeContext context) : base(context)
