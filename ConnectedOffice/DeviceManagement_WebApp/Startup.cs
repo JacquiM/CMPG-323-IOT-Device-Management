@@ -41,8 +41,8 @@ namespace DeviceManagement_WebApp
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<IDeviceRepository, DeviceRepository>();
-            //services.AddTransient<IZoneRepository, ZoneRepository>();
+            services.AddTransient<IDeviceRepository, DeviceRepository>();
+            services.AddTransient<IZoneRepository, ZoneRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
