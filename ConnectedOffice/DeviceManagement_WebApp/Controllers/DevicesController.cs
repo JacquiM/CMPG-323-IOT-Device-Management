@@ -7,37 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
+using DeviceManagement_WebApp.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DeviceManagement_WebApp.Controllers
 {
+    [Authorize]
     public class DevicesController : Controller
     {
-        private readonly ConnectedOfficeContext _context;
+        private readonly IDeviceRepository _deviceRepository;
 
-        public DevicesController(ConnectedOfficeContext context)
+        public DevicesController(IDeviceRepository deviceRepository)
         {
-            _context = context;
+            _deviceRepository = deviceRepository;
         }
 
         // GET: Devices
         public async Task<IActionResult> Index()
         {
-            var connectedOfficeContext = _context.Device.Include(d => d.Category).Include(d => d.Zone);
-            return View(await connectedOfficeContext.ToListAsync());
+            return View(_deviceRepository.GetAll());
         }
-
+        
         // GET: Devices/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var device = await _context.Device
-                .Include(d => d.Category)
-                .Include(d => d.Zone)
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
+            var device = _deviceRepository.GetById(id);
+            
             if (device == null)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace DeviceManagement_WebApp.Controllers
 
             return View(device);
         }
-
+        /*
         // GET: Devices/Create
         public IActionResult Create()
         {
@@ -68,7 +68,7 @@ namespace DeviceManagement_WebApp.Controllers
 
 
         }
-
+        
         // GET: Devices/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
@@ -116,20 +116,18 @@ namespace DeviceManagement_WebApp.Controllers
             }
             return RedirectToAction(nameof(Index));
 
-        }
+        }*/
 
         // GET: Devices/Delete/5
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var device = await _context.Device
-                .Include(d => d.Category)
-                .Include(d => d.Zone)
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
+            var device = _deviceRepository.GetById(id);
+           
             if (device == null)
             {
                 return NotFound();
@@ -143,15 +141,10 @@ namespace DeviceManagement_WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var device = await _context.Device.FindAsync(id);
-            _context.Device.Remove(device);
-            await _context.SaveChangesAsync();
+            var device = _deviceRepository.GetById(id);
+            _deviceRepository.Remove(device);
+            _deviceRepository.Save();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool DeviceExists(Guid id)
-        {
-            return _context.Device.Any(e => e.DeviceId == id);
         }
     }
 }
