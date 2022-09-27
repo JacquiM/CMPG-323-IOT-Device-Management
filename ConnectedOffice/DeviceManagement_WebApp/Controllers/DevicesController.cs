@@ -16,6 +16,7 @@ namespace DeviceManagement_WebApp.Controllers
         private readonly ConnectedOfficeContext _context;
         private readonly IDeviceRepository _deviceRepository;
 
+        
         public DevicesController(ConnectedOfficeContext context, IDeviceRepository deviceRepository)
         {
             _context = context;
@@ -150,7 +151,7 @@ namespace DeviceManagement_WebApp.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        //
         private bool DeviceExists(Guid id)
         {
             return _context.Device.Any(e => e.DeviceId == id);
