@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq.Expressions;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DeviceManagement_WebApp.Repository
 {
@@ -25,6 +26,16 @@ namespace DeviceManagement_WebApp.Repository
         {
             return _context.Set<T>().Where(expression);
         }
+        //Additional Save Method
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+        //Additional Update Method
+        public void Update(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+        }
         public IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
@@ -40,14 +51,6 @@ namespace DeviceManagement_WebApp.Repository
         public void RemoveRange(IEnumerable<T> entities)
         {
             _context.Set<T>().RemoveRange(entities);
-        }
-
-        //Update
-
-        //Save
-        public void Save()
-        {
-            _context.SaveChanges();
         }
     }
 }
