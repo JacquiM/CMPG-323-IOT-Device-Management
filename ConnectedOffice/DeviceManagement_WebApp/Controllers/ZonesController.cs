@@ -8,19 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
 using DeviceManagement_WebApp.Repository;
+using DeviceManagement_WebApp.IRepository;
 
 namespace DeviceManagement_WebApp.Controllers
 {
+    /// <summary>
+    /// Integrated zone
+    /// </summary>
     public class ZonesController : Controller
     {
-        private DeviceRepository _drepo;
-        private CategoryRepository _crepo;
-        private ZoneRepository _zrepo;
-        public ZonesController(ConnectedOfficeContext context)
+        private IZoneRepository _zrepo;
+        public ZonesController(IZoneRepository zrepo)
         {
-            _drepo = new DeviceRepository();
-            _crepo = new CategoryRepository();
-            _zrepo = new ZoneRepository();
+            _zrepo = zrepo;
         }
 
         // GET: Zones

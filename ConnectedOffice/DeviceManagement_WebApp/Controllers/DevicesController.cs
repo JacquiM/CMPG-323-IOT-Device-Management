@@ -8,20 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
 using DeviceManagement_WebApp.Repository;
+using DeviceManagement_WebApp.IRepository;
 
 namespace DeviceManagement_WebApp.Controllers
 {
+    /// <summary>
+    /// Integrated devices
+    /// </summary>
     public class DevicesController : Controller
     {
-        private DeviceRepository _drepo;
-        private CategoryRepository _crepo;
-        private ZoneRepository _zrepo;
+        private IDeviceRepository _drepo;
+        private ICategoryRepository _crepo;
+        private IZoneRepository _zrepo;
 
-        public DevicesController()
+        public DevicesController(IDeviceRepository drepo, ICategoryRepository crepo, IZoneRepository zrepo)
         {
-            _drepo = new DeviceRepository();
-            _crepo = new CategoryRepository();
-            _zrepo = new ZoneRepository();
+            _drepo = drepo;
+            _crepo = crepo;
+            _zrepo = zrepo;
         }
 
         // GET: Devices

@@ -8,20 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
 using DeviceManagement_WebApp.Repository;
+using DeviceManagement_WebApp.IRepository;
 
 namespace DeviceManagement_WebApp.Controllers
-{
+{/// <summary>
+/// Intergrated categories
+/// </summary>
     public class CategoriesController : Controller
     {
-        private DeviceRepository _drepo;
-        private CategoryRepository _crepo;
-        private ZoneRepository _zrepo;
-
-        public CategoriesController(ConnectedOfficeContext context)
+        private ICategoryRepository _crepo;
+     
+        public CategoriesController(ICategoryRepository crepo)
         {
-            _drepo = new DeviceRepository();
-            _crepo = new CategoryRepository();
-            _zrepo = new ZoneRepository();
+            _crepo = crepo;
         }
 
         // GET: Categories
