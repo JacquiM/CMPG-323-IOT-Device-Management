@@ -7,22 +7,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
+using DeviceManagement_WebApp.Repository;
 
 namespace DeviceManagement_WebApp.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ConnectedOfficeContext _context;
+        private DeviceRepository _drepo;
+        private CategoryRepository _crepo;
+        private ZoneRepository _zrepo;
 
         public CategoriesController(ConnectedOfficeContext context)
         {
-            _context = context;
+            _drepo = new DeviceRepository();
+            _crepo = new CategoryRepository();
+            _zrepo = new ZoneRepository();
         }
 
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Category.ToListAsync());
+            var result = _crepo.GetAll();
+            return View(result);
         }
 
         // GET: Categories/Details/5
@@ -33,8 +39,7 @@ namespace DeviceManagement_WebApp.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = _crepo.GetCategoryID(id);
             if (category == null)
             {
                 return NotFound();
@@ -56,9 +61,7 @@ namespace DeviceManagement_WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
         {
-            category.CategoryId = Guid.NewGuid();
-            _context.Add(category);
-            await _context.SaveChangesAsync();
+            _crepo.CreateCategory(category);
             return RedirectToAction(nameof(Index));
         }
 
@@ -70,7 +73,7 @@ namespace DeviceManagement_WebApp.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = _crepo.GetCategoryID(id);
             if (category == null)
             {
                 return NotFound();
@@ -91,8 +94,7 @@ namespace DeviceManagement_WebApp.Controllers
             }
             try
             {
-                _context.Update(category);
-                await _context.SaveChangesAsync();
+                _crepo.UpdateCategory(id, category);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -116,8 +118,7 @@ namespace DeviceManagement_WebApp.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var category = _crepo.GetCategoryID(id);
             if (category == null)
             {
                 return NotFound();
@@ -131,15 +132,13 @@ namespace DeviceManagement_WebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
-            await _context.SaveChangesAsync();
+            var category = _crepo.DeleteCategory(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(Guid id)
         {
-            return _context.Category.Any(e => e.CategoryId == id);
+            return _crepo.CategoryExist(id);
         }
     }
 }
