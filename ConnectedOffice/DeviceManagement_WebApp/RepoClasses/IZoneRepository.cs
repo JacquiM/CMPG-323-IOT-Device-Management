@@ -1,6 +1,12 @@
-﻿namespace DeviceManagement_WebApp.RepoClasses
+﻿using DeviceManagement_WebApp.Models;
+using static DeviceManagement_WebApp.RepoClasses.IGenericRepository;
+
+namespace DeviceManagement_WebApp.RepositoryClasses
 {
-    public class IZoneRepository
+    public interface IZoneRepository : IGenericRepository<Zone>
     {
+        Zone GetMostRecentZone();
+
     }
 }
+

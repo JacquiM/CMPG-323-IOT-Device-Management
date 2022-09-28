@@ -1,10 +1,11 @@
 ﻿using DeviceManagement_WebApp.Models;
-using System.Linq;
+using static DeviceManagement_WebApp.RepoClasses.IGenericRepository;
 
-namespace DeviceManagement_WebApp.RepoClasses
+namespace DeviceManagement_WebApp.RepositoryClasses
 {
     public interface ICategoryRepository : IGenericRepository<Category>
     {
-        Category.GetMostRecentCategory();
+        Category GetMostRecentCategory();
+
     }
 }

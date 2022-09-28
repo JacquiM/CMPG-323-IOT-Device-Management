@@ -1,17 +1,23 @@
 ﻿using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
-using System.Collections.Generic;
+using DeviceManagement_WebApp.RepoClasses;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace DeviceManagement_WebApp.RepoClasses
-{
-    public class ZoneRepository
-    {
-        private readonly ConnectedOfficeContext _context = new ConnectedOfficeContext();
 
-        public List<Zone> Getall()
+namespace DeviceManagement_WebApp.RepositoryClasses
+{
+    public class ZoneRepository : GenericRepository<Zone>, IZoneRepository
+    {
+        public ZoneRepository(ConnectedOfficeContext context) : base(context)
         {
-            return _context.Zone.ToList();
         }
+
+        public Zone GetMostRecentZone()
+        {
+            return _context.Zone.OrderByDescending(zone => zone.CreatedDate).FirstOrDefault();
+        }
+
+
     }
 }

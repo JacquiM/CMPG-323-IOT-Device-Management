@@ -1,6 +1,12 @@
-﻿namespace DeviceManagement_WebApp.RepoClasses
+﻿using DeviceManagement_WebApp.Models;
+using static DeviceManagement_WebApp.RepoClasses.IGenericRepository;
+
+namespace DeviceManagement_WebApp.RepositoryClasses
 {
-    public class IDeviceRepository
+    public interface IDeviceRepository : IGenericRepository<Device>
     {
+        Device GetMostRecentCategort();
+
     }
+
 }

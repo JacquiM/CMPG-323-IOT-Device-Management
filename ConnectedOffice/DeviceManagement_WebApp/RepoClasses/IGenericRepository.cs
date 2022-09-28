@@ -4,8 +4,7 @@ using System;
 
 namespace DeviceManagement_WebApp.RepoClasses
 {
-    public class IGenericRepository
-    {
+   
         public interface IGenericRepository<T> where T : class
         {
             T GetById(int id);
@@ -17,5 +16,5 @@ namespace DeviceManagement_WebApp.RepoClasses
             void RemoveRange(IEnumerable<T> entities);
         }
 
-    }
+    
 }
