@@ -3,7 +3,7 @@ using DeviceManagement_WebApp.Models;
 using DeviceManagement_WebApp.RepoClasses;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using static DeviceManagement_WebApp.RepositoryClasses.CategoryRepository;
+
 
 namespace DeviceManagement_WebApp.RepositoryClasses
 {

@@ -1,10 +1,10 @@
 ﻿using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp;
 using System.Collections.Generic;
-using static DeviceManagement_WebApp.RepoClasses.IGenericRepository;
 using System.Linq.Expressions;
 using System.Linq;
 using System;
+using DeviceManagement_WebApp.RepositoryClasses;
 
 namespace DeviceManagement_WebApp.RepoClasses
 {
