@@ -5,13 +5,14 @@ using System.Linq;
 
 namespace DeviceManagement_WebApp.RepoClasses
 {
-    public class ZoneClass
+    public class DeviceRepository
     {
         private readonly ConnectedOfficeContext _context = new ConnectedOfficeContext();
 
-        public List<Zone> Getall()
+        public List<Device> Getall()
         {
-            return _context.Zone.ToList();
+            return _context.Device.ToList();
         }
     }
+
 }

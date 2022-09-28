@@ -4,7 +4,7 @@ using System;
 
 namespace DeviceManagement_WebApp.RepoClasses
 {
-    public class IGenericClass
+    public class IGenericRepository
     {
         public interface IGenericRepository<T> where T : class
         {

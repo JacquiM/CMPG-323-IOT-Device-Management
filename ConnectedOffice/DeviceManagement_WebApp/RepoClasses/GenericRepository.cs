@@ -1,7 +1,7 @@
 ﻿using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp;
 using System.Collections.Generic;
-using static DeviceManagement_WebApp.RepoClasses.IGenericClass;
+using static DeviceManagement_WebApp.RepoClasses.IGenericRepository;
 using System.Linq.Expressions;
 using System.Linq;
 using System;

@@ -1,6 +1,6 @@
 ﻿namespace DeviceManagement_WebApp.RepoClasses
 {
-    public class IDeviceClass
+    public class IZoneRepository
     {
     }
 }
