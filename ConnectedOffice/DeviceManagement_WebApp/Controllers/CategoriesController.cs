@@ -31,7 +31,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(results);
         }
 
-        // GET: Categories/Details/5
+        // GET: Categories by ID
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -55,9 +55,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View();
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Categories/Create a new category
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
@@ -68,7 +66,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Edit/5
+        // GET: Get certain category by ID
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -84,9 +82,7 @@ namespace DeviceManagement_WebApp.Controllers
             return View(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Categories/Edit cateegory with certain ID
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
@@ -114,7 +110,7 @@ namespace DeviceManagement_WebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Categories/Delete/5
+        // GET: Delete a certain category by ID
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
