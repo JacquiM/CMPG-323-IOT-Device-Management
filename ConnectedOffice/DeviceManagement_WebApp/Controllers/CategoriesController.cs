@@ -19,11 +19,16 @@ namespace DeviceManagement_WebApp.Controllers
             {
                 _context = context;
             }
+            private readonly ICategoryRepository _categoryClass;
+            public CategoryController(ICategoryRepository CategoryClass)
+            {
+                _categoryClass = CategoryClass;
+            }
 
             // GET: Categories
             public async Task<IActionResult> Index()
             {
-                return View(await _context.Category.ToListAsync());
+                return View(_categoryClass.GetAll());
             }
 
             // GET: Categories/Details/5

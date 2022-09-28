@@ -23,7 +23,7 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Devices
         public async Task<IActionResult> Index()
         {
-            DeviceClass DeviceClass = new DeviceClass();
+            DeviceRepository DeviceClass = new DeviceRepository();
             var results = DeviceClass.Getall();
             return View(results);
         }
