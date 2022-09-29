@@ -338,3 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/ConnectedOffice/DeviceManagement_WebApp/appsettings.json
