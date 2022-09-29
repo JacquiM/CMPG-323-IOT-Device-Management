@@ -1,0 +1,11 @@
+Reference list: 
+- https://www.codeproject.com/tips/1135732/how-to-get-missing-jquery-validate-js-file-in-asp
+- https://stackoverflow.com/questions/8982321/jquery-validate-unobtrusive-not-working-with-firefox-chrome
+- https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings?tabs=portal
+- https://stackoverflow.com/questions/18291051/does-not-implement-interface-member
+- https://stackoverflow.com/questions/61833736/system-argumentnullexception-value-cannot-be-null-parameter-connectionstring
+- https://stackoverflow.com/questions/14522251/change-local-repo-directory-in-github
+- https://stackoverflow.com/questions/11384928/change-git-repository-directory-location
+- https://stackoverflow.com/questions/8982321/jquery-validate-unobtrusive-not-working-with-firefox-chrome
+- https://www.geeksforgeeks.org/what-is-unobtrusive-validation-in-jquery/
+- https://www.codeproject.com/questions/163870/unable-to-copy-file-obj-debug-banksys-exe-to-bin-d

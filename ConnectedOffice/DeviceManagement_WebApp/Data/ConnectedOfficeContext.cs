@@ -23,6 +23,7 @@ namespace DeviceManagement_WebApp.Data
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Device> Device { get; set; }
         public virtual DbSet<Zone> Zone { get; set; }
+        public object Product { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
