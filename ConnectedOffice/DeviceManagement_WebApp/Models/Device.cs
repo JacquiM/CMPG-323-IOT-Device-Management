@@ -25,8 +25,7 @@ namespace DeviceManagement_WebApp.Models
         [DisplayName("Date Created")]
         public DateTime DateCreated { get; set; }
 
-        [DisplayName("Created By")]
-        public string CreatedBy { get; set; }
+        
 
         [DisplayName("Category")]
         public virtual Category Category { get; set; }

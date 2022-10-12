@@ -25,7 +25,7 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            return View(_context.Category.Where(d => d.CreatedBy.Equals(User.Identity.Name)));
+            return View(_context.Category);
         }
 
         // GET: Categories/Details/5
@@ -57,10 +57,10 @@ namespace DeviceManagement_WebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated,CreatedBy")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,DateCreated")] Category category)
         {
+            category.DateCreated = DateTime.Now;
             category.CategoryId = Guid.NewGuid();
-            category.CreatedBy = User.Identity.Name;
             _context.Add(category);
             await _context.SaveChangesAsync();
             return RedirectToAction("Details", new { id = category.CategoryId});
