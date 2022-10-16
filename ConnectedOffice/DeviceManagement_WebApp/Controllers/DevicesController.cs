@@ -25,8 +25,7 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Devices
         public async Task<IActionResult> Index()
         {
-            var connectedOfficeContext = _context.Device.Include(d => d.Category).Include(d => d.Zone).Where(d => d.CreatedBy.ToLower().Equals(User.Identity.Name.ToLower()));
-            return View(await connectedOfficeContext.ToListAsync());
+            return View(_context.Device);
         }
 
         // GET: Devices/Details/5
@@ -62,10 +61,10 @@ namespace DeviceManagement_WebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated,CreatedBy")] Device device)
+        public async Task<IActionResult> Create([Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
         {
+            device.DateCreated = DateTime.Now;
             device.DeviceId = Guid.NewGuid();
-            device.CreatedBy = User.Identity.Name;
             _context.Add(device);
             await _context.SaveChangesAsync();
             return RedirectToAction("Details", new { id = device.DeviceId });
@@ -94,7 +93,7 @@ namespace DeviceManagement_WebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated,CreatedBy")] Device device)
+        public async Task<IActionResult> Edit(Guid id, [Bind("DeviceId,DeviceName,CategoryId,ZoneId,Status,IsActive,DateCreated")] Device device)
         {
             if (id != device.DeviceId)
             {

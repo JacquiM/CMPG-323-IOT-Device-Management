@@ -24,7 +24,7 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Zones
         public async Task<IActionResult> Index()
         {
-            return View(_context.Zone.Where(d => d.CreatedBy.Equals(User.Identity.Name)));
+            return View(_context.Zone);
         }
 
         // GET: Zones/Details/5
@@ -56,10 +56,10 @@ namespace DeviceManagement_WebApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ZoneId,ZoneName,ZoneDescription,DateCreated,CreatedBy")] Zone zone)
+        public async Task<IActionResult> Create([Bind("ZoneId,ZoneName,ZoneDescription,DateCreated")] Zone zone)
         {
+            zone.DateCreated = DateTime.Now;
             zone.ZoneId = Guid.NewGuid();
-            zone.CreatedBy = User.Identity.Name;
             _context.Add(zone);
             await _context.SaveChangesAsync();
 

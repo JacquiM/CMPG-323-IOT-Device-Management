@@ -23,8 +23,7 @@ namespace DeviceManagement_WebApp.Models
         public string CategoryDescription { get; set; }
         [DisplayName("Category Date Created")]
         public DateTime DateCreated { get; set; }
-        [DisplayName("Created By")]
-        public string CreatedBy { get; set; }
+        
 
         [DisplayName("Device")]
         public virtual ICollection<Device> Device { get; set; }
